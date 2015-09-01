@@ -1,0 +1,29 @@
+.settings
+.project
+.*~
+*.*~
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+
+pids
+logs
+results
+
+npm-debug.log
+node_modules
+
+# for the time being so we don't put passwords up
+config.js
+
+# don't store the persistence for hardcandy
+data/_*
+tests/data/*
+
+run_docker.sh

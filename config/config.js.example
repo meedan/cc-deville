@@ -1,0 +1,80 @@
+// cc-deville configuation file
+//
+// Benjamin Foote
+// August 2015
+// ben@meedan.com
+
+var config = {};
+
+var pkg = require('../package.json');
+
+// the semver is pulled from package.json
+config.api = {
+    version : '0',
+    semver: pkg.version
+};
+
+config.development = true;
+config.debug = true;
+
+config.net = {
+    domain: 'cc.dev.meedan.net',
+    port: 80
+}
+
+config.auth = {
+    header: 'x-cc-deville-token',
+    active: ['testing123','testing456'']
+};
+
+
+config.caches = [
+    //
+    // type:       the type of backing service
+    //             [ varnish3 | varnish4 | cloudflare ]
+    //
+    // name:       a unique name for this particular service
+    //             that way you could have multiple varnish servers
+    //
+    // orbit:      a number representing "how far from the center"
+    //             used to determine the order in which caches should be cleared (always clear from the center out)
+    // 
+    // cloudflare: cloudflare specific configuration
+    // varnish3:   varnish3 specific configurations
+    // varnish4:   varnish4 specific configurations
+    
+    {
+	type: "cloudflare",
+	name: "cloudflare"
+	orbit: 10,
+	cloudflare : {
+	    email: "youremail@yourdomain.org",
+	    key: "seecloudflaretogetyourtoken"
+	},
+	// this could be automated by asking for all the associated "zones"
+	// https://www.cloudflare.com/docs/next/#zone-list-zones
+	domains: [
+	    "yourdomain.org",
+	    "yourotherdomain.net"
+	    ]
+    },
+
+    {
+	type: "varnish3",
+	name: "varnish-live"
+	orbit: 5,
+	varnish3 : {
+	    secret: "from-secret-file-with-dashes",
+	    host: "varnish.yourdomain.org"
+	},
+	// you can collect domains by going to the varnish host and running:
+	// varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
+	// wait a while and then run:
+	// cat out.log | sort | uniq
+	domains: [
+	    "yourdomain.org",
+	    "yourotherdomain.net"
+	]
+    }
+
+]

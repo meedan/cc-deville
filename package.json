@@ -1,0 +1,43 @@
+{
+  "name": "cc-deville",
+  "version": "0.0.1",
+  "description": "api management",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cc-deville",
+    "cache",
+    "management",
+    "varnish",
+    "cloudflare"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:meedan/cc-deville.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meedan/cc-deville/issues"
+  },
+  "author": "Benjamin Foote",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-develop-server": "^0.4.2",
+    "gulp-jshint": "^1.9.0",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-rename": "^1.2.0"
+  },
+  "dependencies": {
+    "async": "^1.4.2",
+    "gulp": "^3.9.0",
+    "gulp-develop-server": "^0.4.3",
+    "gulp-jshint": "^1.11.2",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "lodash": "^3.10.1",
+    "request": "^2.61.0",
+    "restify": "^4.0.0"
+  }
+}
