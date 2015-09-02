@@ -52,6 +52,15 @@ server.del('purge', function rm(req, res) {
     ship201ACK(res);
 });
 
+server.del('purgeall', function rm(req, res) {
+	if (!isAuthenticated(req)) {
+		return errAndShip("no can do");
+	}
+	console.log("purge", req.query.domain);
+	cc.purge_all(req.query.domain)
+	ship201ACK(res);
+});
+
 server.get('status', function rm(req, res) {
     if (!isAuthenticated(req)) {
     	return errAndShip("no can do");

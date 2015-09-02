@@ -34,6 +34,18 @@ failure...
 
 	HTTP 404 Not Found
 
+## DELETE /purgeall?domain=$domain
+
+### responses:
+
+success...
+
+	HTTP 201 Created
+
+failure...
+
+	HTTP 404 Not Found
+
 ## GET /status?url=$url
 
 all requests
