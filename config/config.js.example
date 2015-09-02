@@ -58,15 +58,16 @@ config.caches = [
 	name: "varnish-live"
 	orbit: 5,
 	varnish3 : {
-	    secret: "from-secret-file-with-dashes",
-	    host: "varnish.yourdomain.org"
+	    host: "varnish.yourdomain.org", // or the ip address
+	    secret: "from-secret-file-with-dashes",	       
 	    // you can collect domains by going to the varnish host and running:
 	    // varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
 	    // wait a while and then run:
 	    // cat out.log | sort | uniq
 	    domains: [
 	    	"yourdomain.org",
-		"yourotherdomain.net"
+		"yourotherdomain.net",
+		"anotherdomain.net"
 		]
 	},
     }
