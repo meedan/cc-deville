@@ -52,7 +52,7 @@ function commonTests () {
     sleep 5;
 
     echo "status $URL";
-    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  #| python -mjson.tool # | grep timestamp
+    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  | python -mjson.tool # | grep timestamp
 
 	echo -e "\n";
 }
