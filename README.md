@@ -13,7 +13,7 @@ Currently supports:
 
  * cloudflare
  * varnish3
- * varnish4
+ * varnish4 
 
 ## all requests
 
@@ -23,7 +23,6 @@ all requests should include the following authorization header:
 
 
 ## DELETE /purge?url=$url
-## DELETE /purge?url=$url1&url=$url2
 
 ### responses:
 
@@ -70,8 +69,6 @@ all requests
 	    "time": 1441201570201,
 	    "type": "cache_status"
 	}
-
-
 
 
 ![cc-deville](./cc-deville.jpg)
