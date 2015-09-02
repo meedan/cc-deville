@@ -5,8 +5,8 @@
 # source dip and other commands
 . ~/.docker_bash_aliases;
 
-# assumes a docker instance called `bcapi`
-IP=$(dip ccdeville);
+# assumes a docker instance called `ccdeville`
+IP=$(dip ccdeville):8080;
 
 echo -e "\n testing $IP \n";
 
@@ -36,21 +36,25 @@ function commonTests () {
     echo "status $URL";
     curl -i -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}" # | python -mjson.tool # | grep timestamp
 
+	echo -e "\n";
     sleep 5;
 
     echo "status $URL";
     curl -i -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}" # | python -mjson.tool # | grep timestamp
     
+	echo -e "\n";
     sleep 5;
     
     echo "purge $URL";
     curl -X "DELETE" -i -s --header "x-cc-deville-token: testing123" "http://$IP//purge?url=${URL}" # | python -mjson.tool # | grep timestamp
 
+	echo -e "\n";
     sleep 5;
 
     echo "status $URL";
-    curl -i -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}" # | python -mjson.tool # | grep timestamp
+    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  #| python -mjson.tool # | grep timestamp
 
+	echo -e "\n";
 }
 
 # getTests

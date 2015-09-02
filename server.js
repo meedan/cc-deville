@@ -54,11 +54,12 @@ server.del('purge', function rm(req, res) {
 
 server.get('status', function rm(req, res) {
     if (!isAuthenticated(req)) {
-	return errAndShip("no can do");
+    	return errAndShip("no can do");
     }
-    console.log("status", req.query.url);
-    cc.status(req.query.url, function(err, ret) {
-	shipping(res, 'status', ret);		
+    var url = req.query.url;
+    console.log("status", url);
+    cc.status(url, function(err, ret) {    	
+    	shipping(res, 'cache_status', {url: url, caches: ret });		
     });
 });
 

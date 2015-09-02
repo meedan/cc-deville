@@ -24,7 +24,7 @@ config.net = {
 
 config.auth = {
     header: 'x-cc-deville-token',
-    active: ['testing123','testing456'']
+    active: ['testing123','testing456']
 };
 
 
@@ -50,13 +50,7 @@ config.caches = [
 	cloudflare : {
 	    email: "youremail@yourdomain.org",
 	    key: "seecloudflaretogetyourtoken"
-	},
-	// this could be automated by asking for all the associated "zones"
-	// https://www.cloudflare.com/docs/next/#zone-list-zones
-	domains: [
-	    "yourdomain.org",
-	    "yourotherdomain.net"
-	    ]
+	}
     },
 
     {
@@ -66,15 +60,15 @@ config.caches = [
 	varnish3 : {
 	    secret: "from-secret-file-with-dashes",
 	    host: "varnish.yourdomain.org"
+	    // you can collect domains by going to the varnish host and running:
+	    // varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
+	    // wait a while and then run:
+	    // cat out.log | sort | uniq
+	    domains: [
+	    	"yourdomain.org",
+		"yourotherdomain.net"
+		]
 	},
-	// you can collect domains by going to the varnish host and running:
-	// varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
-	// wait a while and then run:
-	// cat out.log | sort | uniq
-	domains: [
-	    "yourdomain.org",
-	    "yourotherdomain.net"
-	]
     }
 
 ]

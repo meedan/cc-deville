@@ -40,7 +40,7 @@ HTTP 404 Not Found
 
 
 
-## GET /status?url=<$url>
+## GET /status?url=$url
 
 all requests
 ```
