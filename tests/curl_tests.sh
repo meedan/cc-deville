@@ -31,8 +31,9 @@ function getTests () {
 
 function purge () {
 
-    URL="https://meedan.com/css/screen.css"
-    DOMAIN=meedan.com
+    #    URL="https://meedan.com/css/screen.css"
+    URL="https://ooew-bridge.meedan.com/stylesheets/bridge.css"
+    DOMAIN=ooew-bridge.meedan.com
     
     echo "status $URL";
     curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}" | python -mjson.tool | grep cache_status
