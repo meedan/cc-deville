@@ -55,9 +55,27 @@ config.caches = [
 
     {
 	type: "varnish3",
-	name: "varnish-live"
+	name: "varnish3-live"
 	orbit: 5,
-	varnish3 : {
+	varnish : {
+	    host: "varnish.yourdomain.org", // or the ip address
+	    secret: "from-secret-file-with-dashes",	       
+	    // you can collect domains by going to the varnish host and running:
+	    // varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
+	    // wait a while and then run:
+	    // cat out.log | sort | uniq
+	    domains: [
+	    	"yourdomain.org",
+		"yourotherdomain.net",
+		"anotherdomain.net"
+		]
+	},
+    },
+    {
+	type: "varnish4",
+	name: "varnish4-live"
+	orbit: 5,
+	varnish : {
 	    host: "varnish.yourdomain.org", // or the ip address
 	    secret: "from-secret-file-with-dashes",	       
 	    // you can collect domains by going to the varnish host and running:
@@ -71,5 +89,4 @@ config.caches = [
 		]
 	},
     }
-
 ]
