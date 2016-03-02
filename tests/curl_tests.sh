@@ -8,6 +8,8 @@
 # assumes a docker instance called `ccdeville`
 IP=$(dip ccdeville):8080;
 
+SLEEP=1;
+
 echo -e "\n testing $IP \n";
 
 #
@@ -29,33 +31,31 @@ function getTests () {
 
 }
 
+function _status () {
+	local URL=$1
+    echo "status $URL";
+    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}" | python -mjson.tool | grep -i -e cache_status -e age -e name
+    # curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}" | python -mjson.tool 
+}
+
 function purge () {
 
     #    URL="https://meedan.com/css/screen.css"
     URL="https://ooew-bridge.meedan.com/stylesheets/bridge.css"
     DOMAIN=ooew-bridge.meedan.com
-    
-    echo "status $URL";
-    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}" | python -mjson.tool | grep cache_status
 
-	echo -e "\n";
-    sleep 5;
-
-    echo "status $URL";
-    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  | python -mjson.tool  | grep cache_status
+    _status $URL;
     
 	echo -e "\n";
-    sleep 5;
+    sleep $SLEEP;
     
     echo "purge $URL";
     curl -X "DELETE" -i -s --header "x-cc-deville-token: testing123" "http://$IP//purge?url=${URL}" 
 	echo -e "\n";
-    sleep 30;
+    sleep $SLEEP;
 
-    echo "status $URL";
-    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  | python -mjson.tool  | grep cache_status
+    _status $URL;
 
-	echo -e "\n";
 
 }
 
@@ -64,26 +64,18 @@ function purge_all () {
     URL="https://meedan.com/css/screen.css"
     DOMAIN=meedan.com
     
-    echo "status $URL";
-    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  | python -mjson.tool  | grep cache_status
-
-	echo -e "\n";
-    sleep 5;
-
-    echo "status $URL";
-    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  | python -mjson.tool  | grep cache_status
+    _status $URL;
+    
+    sleep $SLEEP;
     
 	echo -e "\n";
-    sleep 5;
-    
     echo "purge all $DOMAIN";
     curl -X "DELETE" -i -s --header "x-cc-deville-token: testing123" "http://$IP//purgeall?domain=${DOMAIN}" 
     
 	echo -e "\n";
-    sleep 30;
+    sleep $SLEEP;
 
-    echo "status $URL";
-    curl -s --header "x-cc-deville-token: testing123" "http://$IP//status?url=${URL}"  | python -mjson.tool  | grep cache_status
+    _status $URL;
 
 	echo -e "\n";
 }
