@@ -14,6 +14,7 @@ Currently supports:
  * cloudflare
  * varnish3
  * varnish4 
+ * nginx 
 
 ## all requests
 

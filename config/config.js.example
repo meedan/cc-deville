@@ -1,7 +1,7 @@
 // cc-deville configuation file
 //
 // Benjamin Foote
-// August 2015
+// July 2017
 // ben@meedan.com
 
 var config = {};
@@ -42,51 +42,66 @@ config.caches = [
     // cloudflare: cloudflare specific configuration
     // varnish3:   varnish3 specific configurations
     // varnish4:   varnish4 specific configurations
+    // nginx:      nginx specific configurations
     
     {
-	type: "cloudflare",
-	name: "cloudflare"
-	orbit: 10,
-	cloudflare : {
-	    email: "youremail@yourdomain.org",
-	    key: "seecloudflaretogetyourtoken"
-	}
+		type: "cloudflare",
+		name: "cloudflare"
+		orbit: 10,
+		cloudflare : {
+			email: "youremail@yourdomain.org",
+			key: "seecloudflaretogetyourtoken"
+		}
     },
 
     {
-	type: "varnish3",
-	name: "varnish3-live"
-	orbit: 5,
-	varnish : {
-	    host: "varnish.yourdomain.org", // or the ip address
-	    secret: "from-secret-file-with-dashes",	       
-	    // you can collect domains by going to the varnish host and running:
-	    // varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
-	    // wait a while and then run:
-	    // cat out.log | sort | uniq
-	    domains: [
-	    	"yourdomain.org",
-		"yourotherdomain.net",
-		"anotherdomain.net"
-		]
-	},
+		type: "varnish3",
+		name: "varnish3-live"
+		orbit: 5,
+		varnish : {
+			host: "varnish.yourdomain.org", // or the ip address
+			secret: "from-secret-file-with-dashes",	       
+			// you can collect domains by going to the varnish host and running:
+			// varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
+			// wait a while and then run:
+			// cat out.log | sort | uniq
+			domains: [
+				"yourdomain.org",
+				"yourotherdomain.net",
+				"anotherdomain.net"
+			]
+		},
     },
     {
-	type: "varnish4",
-	name: "varnish4-live"
-	orbit: 5,
-	varnish : {
-	    host: "varnish.yourdomain.org", // or the ip address
-	    secret: "from-secret-file-with-dashes",	       
-	    // you can collect domains by going to the varnish host and running:
-	    // varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
-	    // wait a while and then run:
-	    // cat out.log | sort | uniq
-	    domains: [
-	    	"yourdomain.org",
-		"yourotherdomain.net",
-		"anotherdomain.net"
-		]
-	},
+		type: "varnish4",
+		name: "varnish4-live"
+		orbit: 5,
+		varnish : {
+			host: "varnish.yourdomain.org", // or the ip address
+			secret: "from-secret-file-with-dashes",	       
+			// you can collect domains by going to the varnish host and running:
+			// varnishncsa -F '%{Host}i' -n varnish.checkdesk.org -w ./out.log
+			// wait a while and then run:
+			// cat out.log | sort | uniq
+			domains: [
+				"yourdomain.org",
+				"yourotherdomain.net",
+				"anotherdomain.net"
+			]
+		},
+    },
+    {
+		type: "nginx",
+		name: "nginx-live"
+		orbit: 5,
+		nginx : {
+			host: "nginx.yourdomain.org", // or the ip address
+			// all the 'server_names' that use a cache
+			rootURLs: [
+				"http://yourdomain.org",
+				"https://yourotherdomain.net",
+				"http://anotherdomain.net"
+			]
+		},
     }
 ]

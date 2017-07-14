@@ -5,8 +5,8 @@
 # source dip and other commands
 . ~/.docker_bash_aliases;
 
-# assumes a docker instance called `ccdeville`
-IP=$(dip ccdeville):8080;
+# assumes a docker container named `cc`
+IP=$(dip cc):8080;
 
 SLEEP=1;
 
@@ -41,8 +41,7 @@ function _status () {
 function purge () {
 
     #    URL="https://meedan.com/css/screen.css"
-    URL="https://ooew-bridge.meedan.com/stylesheets/bridge.css"
-    DOMAIN=ooew-bridge.meedan.com
+    URL="http://check.naga.bnf.net/js/index.bundle.js"
 
     _status $URL;
     
@@ -82,7 +81,7 @@ function purge_all () {
 
 #getTests
 purge
-purge_all
+# purge_all
 
 
 
