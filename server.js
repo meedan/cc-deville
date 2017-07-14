@@ -38,21 +38,21 @@ server.get(apibase + 'ping', function(req, res) {
     shipping(res, 'pong', 'ping');		
 });
 
-server.get(apibase + 'ping', function(req, res) {
+server.get(apibase + 'healthcheck', function(req, res) {
     console.log('es ping ');		
     shipping(res, 'pong', 'ping');		
 });
 
-server.del('purge', function rm(req, res) {
+server.del(apibase + 'purge', function rm(req, res) {
     if (!isAuthenticated(req)) {
-	return errAndShip("no can do");
+	    return errAndShip("no can do");
     }
     console.log("purge", req.query.url);
     cc.purge(req.query.url)
     ship201ACK(res);
 });
 
-server.del('purgeall', function rm(req, res) {
+server.del(apibase + 'purgeall', function rm(req, res) {
 	if (!isAuthenticated(req)) {
 		return errAndShip("no can do");
 	}
@@ -61,7 +61,7 @@ server.del('purgeall', function rm(req, res) {
 	ship201ACK(res);
 });
 
-server.get('status', function rm(req, res) {
+server.get(apibase + 'status', function rm(req, res) {
     if (!isAuthenticated(req)) {
     	return errAndShip("no can do");
     }
