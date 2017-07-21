@@ -45,7 +45,7 @@ server.get(apibase + 'healthcheck', function(req, res) {
 
 server.del(apibase + 'purge', function rm(req, res) {
     if (!isAuthenticated(req)) {
-	    return errAndShip("no can do");
+	    return errAndShip(res, "not authorized");
     }
     console.log("purge", req.query.url);
     cc.purge(req.query.url)
@@ -54,7 +54,7 @@ server.del(apibase + 'purge', function rm(req, res) {
 
 server.del(apibase + 'purgeall', function rm(req, res) {
 	if (!isAuthenticated(req)) {
-		return errAndShip("no can do");
+		return errAndShip(res, "not authorized");
 	}
 	console.log("purge", req.query.domain);
 	cc.purge_all(req.query.domain)
@@ -63,7 +63,7 @@ server.del(apibase + 'purgeall', function rm(req, res) {
 
 server.get(apibase + 'status', function rm(req, res) {
     if (!isAuthenticated(req)) {
-    	return errAndShip("no can do");
+    	return errAndShip(res, "not authorized");
     }
     var url = req.query.url;
     console.log("status", url);
@@ -71,7 +71,6 @@ server.get(apibase + 'status', function rm(req, res) {
     	shipping(res, 'cache_status', {url: url, caches: ret });		
     });
 });
-
 
 
 // see if you can contact the backend services
