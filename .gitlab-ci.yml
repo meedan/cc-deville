@@ -17,7 +17,8 @@ build:
     - apk add --no-cache curl jq python py-pip git
     - git clone https://${GITHUB_TOKEN}:x-oauth-basic@github.com/meedan/configurator ./configurator
     - d=configurator/check/live/cc/; for f in $(find $d -type f); do cp "$f" "${f/$d/}"; done
-    - pip install awscli
+    - pip install docutils==0.14
+    - pip install awscli==1.16.201
     - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build -f Dockerfile -t "$ECR_BASE_URL:$CI_COMMIT_SHA"  .
