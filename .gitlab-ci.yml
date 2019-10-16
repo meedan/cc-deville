@@ -24,7 +24,7 @@ build:
     - docker build -f Dockerfile -t "$ECR_BASE_URL:$CI_COMMIT_SHA"  .
     - docker push "$ECR_BASE_URL:$CI_COMMIT_SHA"
   only:
-    - feature/7589-cc-aws
+    - master
 
 deploy:
   image: python:3-alpine
@@ -41,4 +41,4 @@ deploy:
     - ecs deploy ecs-live  live-cc-deville --image live-cc-deville-c $ECR_BASE_URL:$CI_COMMIT_SHA --timeout 3600
     - echo "new Image was deployed $ECR_BASE_URL:$CI_COMMIT_SHA"
   only:
-    - feature/7589-cc-aws
+    - master
